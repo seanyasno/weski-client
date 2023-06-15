@@ -33,8 +33,8 @@ export const AccommodationItem = (props: Props) => {
             {/*    width={380}*/}
             {/*/>*/}
             <Stack rowGap={'8px'}>
-                <Typography fontSize={'1.125rem'} fontWeight={500}>{accommodation.hotelName}</Typography>
-                <Rating value={accommodation.hotelInfo.rating} max={5} size={'small'}/>
+                <Typography fontSize={'1.125rem'} fontWeight={500}>{accommodation.HotelName}</Typography>
+                <Rating value={Number(accommodation.HotelInfo.Rating)} max={5} size={'small'}/>
                 <Stack direction={'row'} alignItems={'center'} columnGap={'4px'}>
                     <IoLocationOutline color={'#525D7A'}/>
                     <Typography color={'#525D7A'} fontSize={'0.875rem'} fontWeight={400}>some location</Typography>
@@ -47,7 +47,7 @@ export const AccommodationItem = (props: Props) => {
                         fontSize={'1.125rem'}
                         color={'#000F33'}
                     >
-                        {currency.format(accommodation.pricesInfo.amountBeforeTax)}
+                        {currency.format(accommodation.PricesInfo.AmountBeforeTax)}
                     </Typography>
                     <Typography
                         display={'inline'}

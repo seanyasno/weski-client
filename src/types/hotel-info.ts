@@ -1,7 +1,7 @@
 import {Position} from '@/types';
 
 export type HotelInfo = {
-    position: Position;
-    rating: number;
-    beds: number;
+    Position: Position;
+    Rating: string;
+    Beds: string;
 }

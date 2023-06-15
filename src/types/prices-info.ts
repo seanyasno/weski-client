@@ -1,4 +1,4 @@
 export type PricesInfo = {
-    amountAfterTax: number;
-    amountBeforeTax: number;
+    AmountAfterTax: string;
+    AmountBeforeTax: string;
 }

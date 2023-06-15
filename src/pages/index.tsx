@@ -1,93 +1,15 @@
 import Head from 'next/head';
-import {Inter} from 'next/font/google';
-import {AppBar, Box, Stack, Toolbar, Typography} from '@mui/material';
-import {AccommodationItem} from '@/components';
-import {Accommodation} from '@/types';
-
-const mockAccommodations: Accommodation[] = [
-    {
-        hotelCode: 'PWCSTAMAR',
-        hotelName: 'Chalet Maroi',
-        hotelDescriptiveContent: {
-            images: [
-                {
-                    mainImage: true,
-                    url: 'https://images.pexels.com/photos/262048/pexels-photo-262048.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-                },
-                {
-                    url: 'https://www.powderwhite.com/managed_images/properties/main_images/MAO_maroi-1.jpg'
-                },
-                {
-                    url: 'https://www.powderwhite.com/managed_images/properties/main_images/MAO_maroi-11.jpg'
-                }
-            ]
-        },
-        hotelInfo: {
-            position: {
-                latitude: 45.29690200,
-                longitude: 6.57577000,
-                distances: [
-                    {
-                        type: 'ski_lift',
-                        distance: '340m'
-                    },
-                    {
-                        type: 'city_center',
-                        distance: '220m'
-                    }
-                ]
-            },
-            rating: 2,
-            beds: 3
-        },
-        pricesInfo: {
-            amountAfterTax: 423.23,
-            amountBeforeTax: 410.12
-        }
-    },
-    {
-        hotelCode: 'PWCSTATAJ',
-        hotelName: 'Chalet Taja',
-        hotelDescriptiveContent: {
-            images: [
-                {
-                    url: 'https://www.powderwhite.com/managed_images/properties/main_images/TAJ_g-taja-living1.jpg'
-                },
-                {
-                    mainImage: true,
-                    url: 'https://www.powderwhite.com/managed_images/properties/main_images/TAJ_g-taja-dining.jpg'
-                },
-                {
-                    url: 'https://www.powderwhite.com/managed_images/properties/main_images/TAJ_g-taja-hottub.jpg'
-                }
-            ]
-        },
-        hotelInfo: {
-            position: {
-                latitude: 45.29690200,
-                longitude: 6.57577000,
-                distances: [
-                    {
-                        type: 'ski_lift',
-                        distance: '280m'
-                    },
-                    {
-                        type: 'city_center',
-                        distance: '430m'
-                    }
-                ]
-            },
-            rating: 3,
-            beds: 4
-        },
-        pricesInfo: {
-            amountAfterTax: 238.32,
-            amountBeforeTax: 212.12
-        }
-    },
-];
+import {AppBar, Toolbar} from '@mui/material';
+import {AccommondationList} from '@/components';
+import {useHotelsSearch} from '@/hooks';
+import _ from 'lodash';
 
 export const HomePage = () => {
+    const fromDate = '03/04/2024';
+    const toDate = '03/11/2023';
+    const groupSize = 4;
+    const hotels = useHotelsSearch(1, fromDate, toDate, groupSize);
+
     return (
         <>
             <Head>
@@ -101,19 +23,10 @@ export const HomePage = () => {
                 <Toolbar></Toolbar>
             </AppBar>
 
-            <Box sx={{
-                padding: '40px 80px'
-            }}>
-                <Typography fontSize={'1.75rem'} fontWeight={400} component="h1">Select your ski trip</Typography>
-
-                <Stack
-                    rowGap={'20px'}>
-                    {
-                        mockAccommodations.map((accommodation, index) => <AccommodationItem accommodation={accommodation}
-                                                                                            key={index}/>)
-                    }
-                </Stack>
-            </Box>
+            {
+                hotels && _.isArray(hotels) &&
+                <AccommondationList accommondations={hotels} fromDate={fromDate} toDate={toDate} groupSize={groupSize}/>
+            }
         </>
     );
 };

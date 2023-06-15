@@ -1,9 +1,9 @@
 import {HotelDescriptiveContent, HotelInfo, PricesInfo} from '@/types';
 
 export type Accommodation = {
-    hotelCode: string;
-    hotelName: string;
-    hotelDescriptiveContent: HotelDescriptiveContent;
-    hotelInfo: HotelInfo;
-    pricesInfo: PricesInfo;
+    HotelCode: string;
+    HotelName: string;
+    HotelDescriptiveContent: HotelDescriptiveContent;
+    HotelInfo: HotelInfo;
+    PricesInfo: PricesInfo;
 }

@@ -1,8 +1,8 @@
 export type Position = {
-    latitude: number;
-    longitude: number;
-    distances: {
-        type: string;
-        distance: string;
+    Latitude: string;
+    Longitude: string;
+    Distances: {
+        Type: string;
+        Distance: string;
     }[];
 }
