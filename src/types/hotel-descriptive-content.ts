@@ -1,6 +1,6 @@
 export type HotelDescriptiveContent = {
     images: {
-        mainImage: boolean;
+        mainImage?: boolean;
         url: string;
     }[];
 }

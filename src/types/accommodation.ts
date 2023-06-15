@@ -5,5 +5,5 @@ export type Accommodation = {
     hotelName: string;
     hotelDescriptiveContent: HotelDescriptiveContent;
     hotelInfo: HotelInfo;
-    PricesInfo: PricesInfo;
+    pricesInfo: PricesInfo;
 }
