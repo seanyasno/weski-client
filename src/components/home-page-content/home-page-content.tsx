@@ -5,17 +5,21 @@ import {useHotelsSearch} from '@/hooks';
 import {SearchContext} from '@/contexts';
 
 export const HomePageContent: React.FC = () => {
-    const {searchFormik} = useContext(SearchContext);
-    const {destination, startDate, endDate, groupSize} = searchFormik.values;
-    const hotels = useHotelsSearch(destination, startDate, endDate, groupSize);
+    const {searchFormik, data, destination, startDate, endDate, groupSize} = useContext(SearchContext);
+    // const {destination, startDate, endDate, groupSize} = searchFormik.values;
 
     return (
         <>
             <SearchBar/>
 
             {
-                hotels && _.isArray(hotels) &&
-                <AccommondationList accommondations={hotels} fromDate={startDate} toDate={endDate} groupSize={groupSize}/>
+                data && _.isArray(data) &&
+                <AccommondationList
+                    accommondations={data}
+                    fromDate={startDate}
+                    toDate={endDate}
+                    groupSize={groupSize}
+                />
             }
         </>
     );
