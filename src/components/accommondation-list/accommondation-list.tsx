@@ -6,13 +6,14 @@ import {AccommodationItem} from '@/components';
 
 type Props = {
     accommondations: Accommodation[];
+    destination: number;
     fromDate: string;
     toDate: string;
     groupSize: number;
 }
 
 export const AccommondationList = (props: Props) => {
-    const {accommondations, fromDate, toDate, groupSize} = props;
+    const {accommondations, destination, fromDate, toDate, groupSize} = props;
 
     return (
         <Box sx={{
@@ -31,6 +32,7 @@ export const AccommondationList = (props: Props) => {
                     accommondations && _.isArray(accommondations) && accommondations.map((accommodation, index) =>
                         <AccommodationItem
                             accommodation={accommodation}
+                            destination={destination}
                             key={index}/>)
                 }
             </Stack>

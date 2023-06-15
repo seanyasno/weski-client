@@ -1,9 +1,10 @@
 import {Accommodation} from '@/types';
-import React from 'react';
+import React, {useMemo} from 'react';
 import styled from '@emotion/styled';
 import {Box, Divider, Rating, Stack, Typography} from '@mui/material';
 import {IoLocationOutline} from 'react-icons/io5';
 import Image from 'next/image';
+import {destinations} from '@/config';
 
 export const StyledContainer = styled.div`
   background: #FFFFFF;
@@ -15,6 +16,7 @@ export const StyledContainer = styled.div`
 
 type Props = {
     accommodation: Accommodation;
+    destination: number;
 }
 
 export const AccommodationItem = (props: Props) => {
@@ -24,6 +26,8 @@ export const AccommodationItem = (props: Props) => {
         style: 'currency',
         currency: 'USD',
     });
+
+    const currentDestination = useMemo(() => destinations.find(destination => destination.id === props.destination), [props.destination]);
 
     return (
         <StyledContainer>
@@ -37,7 +41,7 @@ export const AccommodationItem = (props: Props) => {
                 <Rating value={Number(accommodation.HotelInfo.Rating)} max={5} size={'small'}/>
                 <Stack direction={'row'} alignItems={'center'} columnGap={'4px'}>
                     <IoLocationOutline color={'#525D7A'}/>
-                    <Typography color={'#525D7A'} fontSize={'0.875rem'} fontWeight={400}>some location</Typography>
+                    <Typography color={'#525D7A'} fontSize={'0.875rem'} fontWeight={400}>{currentDestination?.name}</Typography>
                 </Stack>
                 <Divider/>
                 <Stack direction={'row'} justifyContent={'flex-end'} columnGap={'4px'} alignItems={'baseline'}>
