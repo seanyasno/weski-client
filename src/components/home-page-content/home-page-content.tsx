@@ -11,7 +11,7 @@ export const HomePageContent: React.FC = () => {
             <SearchBar/>
 
             {
-                data && _.isArray(data) &&
+                data && _.isArray(data) && data.length > 0 &&
                 <AccommondationList
                     accommondations={data}
                     destination={destination}
