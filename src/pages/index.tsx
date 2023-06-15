@@ -1,14 +1,8 @@
 import Head from 'next/head';
-import {AppBar, Toolbar} from '@mui/material';
-import {AccommondationList} from '@/components';
-import {useHotelsSearch} from '@/hooks';
-import _ from 'lodash';
+import {HomePageContent} from '@/components';
+import {SearchProvider} from '@/contexts';
 
 export const HomePage = () => {
-    const fromDate = '03/04/2024';
-    const toDate = '03/11/2023';
-    const groupSize = 4;
-    const hotels = useHotelsSearch(1, fromDate, toDate, groupSize);
 
     return (
         <>
@@ -19,14 +13,9 @@ export const HomePage = () => {
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
 
-            <AppBar position={'static'}>
-                <Toolbar></Toolbar>
-            </AppBar>
-
-            {
-                hotels && _.isArray(hotels) &&
-                <AccommondationList accommondations={hotels} fromDate={fromDate} toDate={toDate} groupSize={groupSize}/>
-            }
+            <SearchProvider>
+                <HomePageContent/>
+            </SearchProvider>
         </>
     );
 };
